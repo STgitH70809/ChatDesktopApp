@@ -1,8 +1,8 @@
 package socket;
 
-import ui.ChatFrame;
 import java.io.*;
 import java.net.*;
+import ui.ChatFrame;
 
 public class Upload implements Runnable{//class up load file
 
@@ -38,9 +38,9 @@ public class Upload implements Runnable{//class up load file
             }
             Out.flush();
             
-            ui.jTextArea1.append("[Applcation > Me] : File upload complete\n");//thong bao gui file thanh cong ra giao dien
-            ui.jButton5.setEnabled(true); ui.jButton6.setEnabled(true);
-            ui.jTextField5.setVisible(true);//cho su dung lai vung gui file(vung phia duoi giao dien)
+            //ui.jTextArea1.append("[Applcation > Me] : File upload complete\n");//thong bao gui file thanh cong ra giao dien
+            //ui.jButton5.setEnabled(true); ui.jButton6.setEnabled(true);
+            //ui.jTextField5.setVisible(true);//cho su dung lai vung gui file(vung phia duoi giao dien)
             
             if(In != null){ In.close(); }//giai phong vung nho
             if(Out != null){ Out.close(); }

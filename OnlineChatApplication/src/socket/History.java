@@ -21,7 +21,7 @@ public class History {//class doc lich su chat chit
     }
     
     public void addMessage(Message msg, String time){
-        //them  tin nhan moi vao history
+        //them tin nhan moi vao history
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();

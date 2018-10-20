@@ -1,12 +1,30 @@
 package ui;
 
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+
 import socket.History;
+import javax.swing.JButton;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Font;
 
 public class HistoryFrame extends javax.swing.JFrame {//class hien thi lich su chat chit
     
     public History hist;//object chua lich su
     
     public HistoryFrame() {
+    	try {
+    	    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+    	        if ("Nimbus".equals(info.getName())) {
+    	            UIManager.setLookAndFeel(info.getClassName());
+    	            break;
+    	        }
+    	    }
+    	} catch (Exception e) {
+    	    // If Nimbus is not available, you can set the GUI to another look and feel.
+    	}
         initComponents();
     }
     
@@ -34,7 +52,7 @@ public class HistoryFrame extends javax.swing.JFrame {//class hien thi lich su c
 
             },
             new String [] {
-                "Sender", "Message", "To", "Time"
+                "From", "Msg", "To", "Time"
             }
         ) {
             Class[] types = new Class [] {
@@ -54,33 +72,53 @@ public class HistoryFrame extends javax.swing.JFrame {//class hien thi lich su c
         });
         jScrollPane1.setViewportView(jTable1);
         jTable1.getColumnModel().getColumn(1).setPreferredWidth(200);
+        
+        btnClose = new JButton("Close");
+        btnClose.setEnabled(true);
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	btnCloseActionPerformed(evt);
+            }
+        });
+        btnClose.setForeground(UIManager.getColor("CheckBoxMenuItem.acceleratorForeground"));
+        btnClose.setFont(new Font("Ubuntu", Font.BOLD, 16));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE))
-                .addContainerGap())
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addComponent(jLabel1)
+        					.addGap(0, 421, Short.MAX_VALUE))
+        				.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE))
+        			.addContainerGap())
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(213)
+        			.addComponent(btnClose, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        			.addGap(220))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
-                .addContainerGap())
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(jLabel1)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(btnClose)
+        			.addContainerGap())
         );
+        getContentPane().setLayout(layout);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton8ActionPerformed
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -116,5 +154,5 @@ public class HistoryFrame extends javax.swing.JFrame {//class hien thi lich su c
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable jTable1;
-    // End of variables declaration//GEN-END:variables
+    private JButton btnClose;
 }

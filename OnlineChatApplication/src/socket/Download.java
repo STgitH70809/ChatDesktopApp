@@ -1,8 +1,10 @@
 package socket;
 
-import ui.ChatFrame;
 import java.io.*;
 import java.net.*;
+import ui.ChatFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class Download implements Runnable{
     
@@ -22,7 +24,8 @@ public class Download implements Runnable{
             this.ui = ui;
         } 
         catch (IOException ex) {
-            System.out.println("Exception [Download : Download(...)]");
+        	final JPanel panel = new JPanel();
+        	JOptionPane.showMessageDialog(panel, "Exception [Download : Download(...)]!", "Download Failed!", JOptionPane.WARNING_MESSAGE);
         }
     }
 
@@ -43,15 +46,16 @@ public class Download implements Runnable{
             }
             
             Out.flush();
-            
-            ui.jTextArea1.append("[Application > Me] : Download complete\n");//thong bao download thanh cong ra giao dien
-            
+            final JPanel panel = new JPanel();
+        	JOptionPane.showMessageDialog(panel, "You have already received the file!", "Download Complete!", JOptionPane.INFORMATION_MESSAGE);
+        	
             if(Out != null){ Out.close(); }
             if(In != null){ In.close(); }
             if(socket != null){ socket.close(); }
         } 
         catch (Exception ex) {
-            System.out.println("Exception [Download : run(...)]");
+        	final JPanel panel = new JPanel();
+        	JOptionPane.showMessageDialog(panel, "Exception [Download : run(...)]!", "Download Failed!", JOptionPane.WARNING_MESSAGE);
         }
     }
 }
