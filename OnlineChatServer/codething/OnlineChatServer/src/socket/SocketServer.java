@@ -228,7 +228,7 @@ public class SocketServer implements Runnable {//cai nay de quan li 1 list cac s
             	System.out.println("this is port_rep : " + msg.port +" "+ findUserThread(msg.sender).thePORT);
             	
             	Announce("newuser", "SERVER", msg.sender,clients[te].socket.getInetAddress().getHostAddress(),clients[te].thePORT);
-                
+                //TODO there must be something I can do
                 SendUserList(msg.sender);//gui cho may ban client khac de biet duong lien lac
             }
 	}
