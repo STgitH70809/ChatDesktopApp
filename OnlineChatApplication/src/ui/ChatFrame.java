@@ -74,6 +74,7 @@ public class ChatFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public ChatFrame() {
+		hist = new History(historyFile);//=========>
 		setTitle("JatQ");
 		setResizable(false);
 		setBackground(Color.DARK_GRAY);

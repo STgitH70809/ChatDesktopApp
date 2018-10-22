@@ -75,6 +75,43 @@ public class History {//class doc lich su chat chit
         }
     }
     
+    public String VoltalicChain(String nameS,String nameR){//lay du lieu theo ten
+    	String THE_STRING="";
+    
+        try{
+            File fXmlFile = new File(filePath);
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(fXmlFile);
+            doc.getDocumentElement().normalize();
+            
+            NodeList nList = doc.getElementsByTagName("message");
+            
+            for (int temp = 0; temp < nList.getLength(); temp++) {
+                Node nNode = nList.item(temp);
+                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element eElement = (Element) nNode;
+                    String _sender = getTagValue("sender", eElement);
+                    String _content = getTagValue("content", eElement);
+                    String _recipient = getTagValue("recipient", eElement);
+                    String _time = getTagValue("time", eElement);
+                    if(nameS.equals(_sender) && nameR.equals(_recipient)) {
+                    	THE_STRING += ">>" + _sender + "\n" + _content + "\n";
+                    }else {
+                    	if(nameR.equals(_sender) && nameS.equals(_recipient)) {
+                    		THE_STRING += ">>" + _sender + "\n" + _content + "\n";
+                    	}
+                    }
+                }
+            }
+        }
+        catch(Exception ex){
+            System.out.println("NO THING Exception");
+            return THE_STRING;
+        }
+        return THE_STRING;
+    }
+    
     public static String getTagValue(String sTag, Element eElement) {
 	NodeList nlList = eElement.getElementsByTagName(sTag).item(0).getChildNodes();
         Node nValue = (Node) nlList.item(0);

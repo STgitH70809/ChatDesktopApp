@@ -131,6 +131,15 @@ public class SocketClient implements Runnable{//class chay client
                         }
                         if(!exists){ 
                         	ui_Chat.model.addElement(msg.content);
+                        	int index = 0;
+                         	for (int i = 1; i < ui_Chat.model.getSize(); i++) {
+                         		String find = ui_Chat.model.get(i).toString();
+                         		if(msg.content.equals(find)) {
+                         			index = i;
+                         			break;
+                         		}
+                         	}
+                         	ui_Chat.chatArea[index].setText(hist.VoltalicChain(username, msg.content));
                         	usernames.add(msg.content);
                         	ports.add(msg.port);
                         	ipaddresses.add(msg.ipaddress);
@@ -139,20 +148,20 @@ public class SocketClient implements Runnable{//class chay client
                 }
                 else if(msg.type.equals("signup")){//ket qua dang ki tu server
                     if(msg.content.equals("TRUE")){//thanh cong
-                    	ui_Login.jButton2.setEnabled(false); 
-                        ui_Login.jButton3.setEnabled(false);
-                        username = ui_Login.jTextField3.getText();//==============>
-                        password = msg.content;//===============>
-                        ui_Chat = new ChatFrame();//=====================>
-                        ui_Chat.setVisible(true);//===================>
-                        ui_Login.setVisible(false);//===================>
-                        ui_Chat.client = this;
+                    	//ui_Login.jButton2.setEnabled(false); 
+                        //ui_Login.jButton3.setEnabled(false);
+                        //username = ui_Login.jTextField3.getText();//==============>
+                        //password = msg.content;//===============>
+                        //ui_Chat = new ChatFrame();//=====================>
+                        //ui_Chat.setVisible(true);//===================>
+                        //ui_Login.setVisible(false);//===================>
+                        //ui_Chat.client = this;
                         
                         
                         final JPanel panel = new JPanel();
                     	JOptionPane.showMessageDialog(panel, "You have already logged into the application!", "Signup Successful!", JOptionPane.INFORMATION_MESSAGE);
                     	
-                    	ui_Login.jButton2.setEnabled(false); ui_Login.jButton3.setEnabled(false);
+                    	//ui_Login.jButton2.setEnabled(false); ui_Login.jButton3.setEnabled(false);
                     }
                     else{
                     	final JPanel panel = new JPanel();
